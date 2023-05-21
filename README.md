@@ -65,14 +65,14 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 # Login Credentials
-Administrator 
+Administrator <br>
 Email: admin@petakommart.com
 Password:123456
 
-Petakom Committee
+Petakom Committee <br>
 Email: petakomcomm@petakommart.com
 Password:123456
 
-Cashier 
+Cashier <br>
 Email: cashier@petakommart.com
 Password:123456
