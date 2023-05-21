@@ -26,7 +26,8 @@ class User extends Authenticatable
         'student_id',
         'email',
         'password',
-        'type'
+        'type',
+     
     ];
   
     /**
@@ -46,10 +47,6 @@ class User extends Authenticatable
      * @var array
 
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
- 
     /**
      * Interact with the user's first name.
      *
@@ -59,7 +56,7 @@ class User extends Authenticatable
     protected function type(): Attribute
     {
         return new Attribute(
-            get: fn ($value) =>  ["cashier", "admin", "petakomcomm"][$value],
+            get: fn ($value) =>  ["Cashier", "Admin", "Petakom Committee"][$value],
         );
     }
 }
