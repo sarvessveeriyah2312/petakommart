@@ -88,7 +88,6 @@
 						</div>
 					</div>
 					<hr class="m-0">
-					<a class="dropdown-item" href="{{url('profile')}}"> <i class="me-2"  data-feather="user"></i> My Profile</a>
 					<a class="dropdown-item" href="{{url('generalsettings')}}"><i class="me-2" data-feather="settings"></i>Settings</a>
 					<hr class="m-0">
 					<a class="dropdown-item logout pb-0" href="{{ route('logout') }}"  onclick="event.preventDefault();

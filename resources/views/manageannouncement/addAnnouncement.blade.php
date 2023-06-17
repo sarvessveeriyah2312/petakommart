@@ -43,23 +43,6 @@
                             @enderror
                         </div>
                     </div>
-                    
-                    
-                    
-            
-                   
-                    {{-- <div class="col-lg-12">
-                        <div class="form-group">
-                            <label>	Content Image</label>
-                            <div class="image-upload">
-                                <input type="file">
-                                <div class="image-uploads">
-                                    <img src="{{ URL::asset('/assets/img/icons/upload.svg')}}" alt="img">
-                                    <h4>Drag and drop a file to upload</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
                     <div class="col-lg-12">
                         <button type="submit" href="javascript:void(0);" class="btn btn-submit me-2"> {{ __('Submit') }}</button>
                         <a href="{{route('admin.home')}}"  class="btn btn-cancel">Cancel</a>

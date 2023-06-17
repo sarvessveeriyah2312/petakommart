@@ -17,10 +17,12 @@
 <div class="main-wrapper">
   @if(!Route::is(['error-404','error-500','forgetpassword','resetpassword','signin','signup']))
     @include('layouts.partials.header')
+    @if (Auth::user()->auth_type === 'Cashier')
+      @include('layouts.partials.cashiersidebar')
+    @else
+      @include('layouts.partials.adminsidebar')
     @endif
-    @if(!Route::is(['error-404','error-500','forgetpassword','pos','resetpassword','signin','signup']))
-    @include('layouts.partials.adminsidebar')
-  @endif 
+  @endif
     @yield('content')
 </div>		
 <!-- /Main Wrapper -->

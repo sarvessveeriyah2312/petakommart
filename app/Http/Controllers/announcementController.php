@@ -52,6 +52,11 @@ class announcementController extends Controller
     return view('manageannouncement.showAnnouncement', compact('data'));
 }
 
+public function view(announcementModel $announcement): View
+{
+    $data=announcementModel::all();
+    return view('announcementlist', compact('data'));
+}
 
 
     /**

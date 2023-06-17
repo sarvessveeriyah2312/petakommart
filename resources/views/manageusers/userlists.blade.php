@@ -124,7 +124,7 @@
                                     <form id="delete" method="post" action="{{ route('users.destroy', $use['id']) }}">
                                         @csrf
                                         @method('DELETE')
-                                    <a class="me-3" href="{{ route('manageusers.newuseredit', ['id' => $use['id']]) }}">
+                                    <a class="me-3" href="{{ route('users.edit', $use['id']) }}">
                                         <img src="{{ URL::asset('/assets/img/icons/edit.svg')}}" alt="img">
                                     </a>
                                         <button type="submit" style="border: none" class="me-3 confirm-text">

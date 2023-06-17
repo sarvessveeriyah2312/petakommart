@@ -66,7 +66,7 @@
                     <h2 class="font-weight-bold">Platform Independent</h2>
                     <p class="my-4">
                        It is designed to be platform-independent and can be deployed on various platforms. 
-                       It is built using web technologies and follows a Model View Controller (MVC) architecture, 
+                       It is built using Laravel Framework web technologies and follows by Model View Controller (MVC) architecture, 
                        which allows it to be accessible from different devices and operating systems.
                     </p>
                     <a href="#" class="btn my-4 font-weight-bold atlas-cta cta-blue">Learn More</a>

@@ -502,16 +502,17 @@
                         <li class="{{ Request::is('index','index-two') ? 'active' : '' }}" >
                             <a href="{{ route('home') }}"><i data-feather="grid"></i><span>Dashboard</span></a>
                         </li>
-                        <li class="submenu">
-                            <a href="javascript:void(0);" class="{{ Request::is('chat','calendar','email') ? 'active subdrop' : '' }}"><i data-feather="smartphone"></i><span>Application</span><span class="menu-arrow"></span></a>
-                            <ul>
-                                <li><a class="{{ Request::is('chat') ? 'active' : '' }}" href="{{url('chat')}}">Chat</a></li>
-                                <li><a class="{{ Request::is('calendar') ? 'active' : '' }}" href="{{url('calendar')}}">Calendar</a></li>
-                                <li><a class="{{ Request::is('email') ? 'active' : '' }}" href="{{url('email')}}">Email</a></li>
-                            </ul>
-                        </li>
+                        
                     </ul>								
                 </li>
+                <li class="submenu-open">
+                    <h6 class="submenu-hdr">Announcement</h6>		
+                    <ul>
+                        <li class="{{ Request::is('announcementlist') ? 'active' : '' }}"><a href="{{route('announcementlist')}}"><i data-feather="pen-tool"></i><span>Announcement</span></a></li>
+                    </ul>
+                </li>
+
+
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">Products</h6>
                     <ul>

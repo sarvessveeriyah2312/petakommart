@@ -18,8 +18,8 @@
                         <li class="submenu">
                             <a href="javascript:void(0);"><img src="{{ URL::asset('/assets/img/icons/product.svg')}}" alt="img"><span> Product</span> <span class="menu-arrow"></span></a>
                             <ul>
-                                <li><a href="productlist">Product List</a></li>
-                                <li><a href="addproduct">Add Product</a></li>
+                                <li><a href="inventorylist">Product List</a></li>
+                                <li><a href="addinventory">Add Product</a></li>
                                 <li><a href="categorylist">Category List</a></li>
                                 <li><a href="addcategory">Add Category</a></li>
                                 <li><a href="subcategorylist">Sub Category List</a></li>
@@ -525,9 +525,9 @@
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">Products</h6>
                     <ul>
-                        <li class="{{ Request::is('productlist','editproduct') ? 'active' : '' }}"><a href="{{url('productlist')}}"><i data-feather="box"></i><span>Products</span></a></li>
-                        <li class="{{ Request::is('addproduct','product-details') ? 'active' : '' }}"><a href="{{url('addproduct')}}"><i data-feather="plus-square"></i><span>Create Product</span></a></li>
-                        <li class="{{ Request::is('categorylist','addcategory','editcategory') ? 'active' : '' }}"><a href="{{url('categorylist')}}"><i data-feather="codepen"></i><span>Category</span></a></li>
+                        <li class="{{ Request::is('inventorylist','editinventory') ? 'active' : '' }}"><a href="{{route('manageinventory.inventorylist')}}"><i data-feather="box"></i><span>Inventory List</span></a></li>
+                        <li class="{{ Request::is('addinventory','inventory-details') ? 'active' : '' }}"><a href="{{route('manageinventory.addinventory')}}"><i data-feather="plus-square"></i><span>Create inventory</span></a></li>
+                       <li class="{{ Request::is('categorylist','addcategory','editcategory') ? 'active' : '' }}"><a href="{{url('categorylist')}}"><i data-feather="codepen"></i><span>Category</span></a></li>
                         <li class="{{ Request::is('brandlist','addbrand','editbrand') ? 'active' : '' }}"><a href="{{url('brandlist')}}"><i data-feather="tag"></i><span>Brands</span></a></li>
                         <li class="{{ Request::is('subcategorylist','editsubcategory','subaddcategory') ? 'active' : '' }}"><a href="{{url('subcategorylist')}}"><i data-feather="speaker"></i><span>Sub Category</span></a></li>									
                         <li class="{{ Request::is('barcode') ? 'active' : '' }}"><a href="{{url('barcode')}}"><i data-feather="align-justify"></i><span>Print Barcode</span></a></li>

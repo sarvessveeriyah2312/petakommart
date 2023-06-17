@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\announcementController;
+use App\Http\Controllers\inventoryController;
+use App\Http\Controllers\rosterController;  
   
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +25,9 @@ Route::get('/', function () {
 
 Route::resource('users', userController::class);
 Route::resource('announcements', announcementController::class);
+Route::resource('inventorys', inventoryController::class);
+Route::resource('rosters', rosterController::class);
+
 
 /*------------------------------------------
 --------------------------------------------
@@ -32,22 +37,13 @@ Add Users Routes List
 Route::get('/create', [userController::class, 'create'])->name('manageusers.create');
 Route::post('create', [userController::class, 'create'])->name('create');
 
-
 /*------------------------------------------
 --------------------------------------------
 Users List Routes List
 --------------------------------------------
 --------------------------------------------*/
-Route::view('manageannouncement.showAnnouncement' , 'showAnnouncement');
-Route::get('/show', [announcementController::class, 'show'])->name('manageannouncement.showAnnouncement');
-
-Route::view('manageannouncement.updateAnnouncement' , 'updateAnnouncement');
-Route::get('/edit/{id}', [announcementController::class, 'edit'])->name('manageannouncement.updateAnnouncement');
-Route::get('/update/{id}', [announcementController::class, 'edit'])->name('manageannouncement.updateAnnouncement');
-Route::patch('/update/{id}', [announcementController::class, 'update'])->name('manageannouncement.updateAnnouncement');
-Route::delete('/destroy/{id}', [announcementController::class, 'destroy'])->name('manageannouncement.destroy');
-
-
+Route::view('manageusers.userlists' , 'userlists');
+Route::get('/userlist', [userController::class, 'show'])->name('manageusers.userlists');
 
 /*------------------------------------------
 --------------------------------------------
@@ -55,16 +51,103 @@ Edit Users List Routes List
 --------------------------------------------
 --------------------------------------------*/
 
-Route::view('manageusers.newuseredit' , 'newuseredit');
-Route::get('/edit/{id}', [userController::class, 'edit'])->name('manageusers.newuseredit');
-Route::get('/update/{id}', [userController::class, 'edit'])->name('manageusers.newuseredit');
-Route::patch('/update/{id}', [UserController::class, 'update'])->name('manageusers.newuseredit');
-Route::delete('/destroy/{id}', [UserController::class, 'destroy'])->name('manageusers.destroy');
+Route::view('manageusers.newuseredit', 'newuseredit')->name('manageusers.newuseredit');
+Route::get('edit/{id}', [userController::class, 'edit'])->name('manageusers.edit');
+Route::get('update/{id}', [userController::class, 'edit'])->name('manageusers.update');
+Route::patch('update/{id}', [userController::class, 'update'])->name('manageusers.updatePatch');
+
+/*------------------------------------------
+--------------------------------------------
+Add Announcement Routes List
+--------------------------------------------
+--------------------------------------------*/
+Route::get('/addAnnouncement', [announcementController::class, 'create'])->name('manageannouncement.addAnnouncement');
+Route::post('create', [announcementController::class, 'create'])->name('create');
+
+/*------------------------------------------
+--------------------------------------------
+Announcement List Routes List
+--------------------------------------------
+--------------------------------------------*/
+Route::view('manageannouncement.showAnnouncement' , 'showAnnouncement');
+Route::get('/showAnnouncement', [announcementController::class, 'show'])->name('manageannouncement.showAnnouncement');
+
+
+ /*------------------------------------------
+--------------------------------------------
+Edit Announceemnt List Routes List
+--------------------------------------------
+--------------------------------------------*/
+
+Route::view('manageannouncement.updateAnnouncement', 'updateAnnouncement')->name('manageannouncement.updateAnnouncement');
+Route::get('/edit/{id}', [announcementController::class, 'edit'])->name('manageannouncement.editAnnouncement');
+Route::get('/update/{id}', [announcementController::class, 'edit'])->name('manageannouncement.updateAnnouncement');
+Route::patch('/update/{id}', [announcementController::class, 'update'])->name('manageannouncement.updateAnnouncement');
 
 
 
 
 
+
+
+/*------------------------------------------
+--------------------------------------------
+Add Inventory Routes List
+--------------------------------------------
+--------------------------------------------*/
+Route::get('/addinventory', [inventoryController::class, 'create'])->name('manageinventory.addinventory');
+Route::post('create', [inventoryController::class, 'create'])->name('create');
+
+/*------------------------------------------
+--------------------------------------------
+inventory List Routes List
+--------------------------------------------
+--------------------------------------------*/
+Route::view('manageinventory.inventorylist' , 'inventorylist');
+Route::get('/inventorylist', [inventoryController::class, 'show'])->name('manageinventory.inventorylist');
+
+
+ /*------------------------------------------
+--------------------------------------------
+Edit Inventory List Routes List
+--------------------------------------------
+--------------------------------------------*/
+
+Route::view('manageinventory.updateinventory' , 'updateinventory')->name('manageinventory.updateinventory');
+Route::get('/edit/{id}', [inventoryController::class, 'edit'])->name('manageinventory.updateinventory');
+Route::get('/update/{id}', [inventoryController::class, 'edit'])->name('manageinventory.updateinventory');
+Route::patch('/update/{id}', [inventoryController::class, 'update'])->name('manageinventory.updateinventory');
+
+
+/*------------------------------------------
+--------------------------------------------
+Add Schedule Routes List
+--------------------------------------------
+--------------------------------------------*/
+Route::get('/addSchedule', [rosterController::class, 'create'])->name('manageRoster.addSchedule');
+Route::post('create', [rosterController::class, 'create'])->name('create');
+
+/*------------------------------------------
+--------------------------------------------
+Schedule List Routes List
+--------------------------------------------
+--------------------------------------------*/
+Route::view('manageRoster.listSchedule' , 'listSchedule');
+Route::get('/listSchedule', [rosterController::class, 'show'])->name('manageRoster.listSchedule');
+
+
+ /*------------------------------------------
+--------------------------------------------
+Edit Schedule List Routes List
+--------------------------------------------
+--------------------------------------------*/
+
+Route::view('manageRoster.updateSchedule' , 'updateSchedule');
+Route::get('/edit/{id}', [rosterController::class, 'edit'])->name('manageRoster.updateSchedule');
+Route::get('/update/{id}', [rosterController::class, 'edit'])->name('manageRoster.updateSchedule');
+Route::patch('/update/{id}', [rosterController::class, 'update'])->name('manageRoster.updateSchedule');
+
+Route::get('/announcementlist', [announcementController::class, 'view'])->name('announcementlist');
 
   
 Auth::routes();
@@ -87,62 +170,6 @@ All Admin Routes List
 Route::middleware(['auth', 'user-access:Admin'])->group(function () {  
 Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
 
-/*------------------------------------------
---------------------------------------------
-Add Users Routes List
---------------------------------------------
---------------------------------------------*/
-Route::get('/admin/create', [userController::class, 'create'])->name('manageusers.create');
-Route::post('create', [userController::class, 'create'])->name('create');
-
-/*------------------------------------------
---------------------------------------------
-Users List Routes List
---------------------------------------------
---------------------------------------------*/
-Route::view('manageusers.userlists' , 'userlists');
-Route::get('/admin/userlist', [userController::class, 'show'])->name('manageusers.userlists');
-
-/*------------------------------------------
---------------------------------------------
-Edit Users List Routes List
---------------------------------------------
---------------------------------------------*/
-
-Route::view('manageusers.newuseredit' , 'newuseredit');
-Route::get('/admin/edit/{id}', [userController::class, 'edit'])->name('manageusers.newuseredit');
-Route::get('/admin/update/{id}', [userController::class, 'edit'])->name('manageusers.newuseredit');
-Route::patch('/admin/update/{id}', [UserController::class, 'update'])->name('manageusers.newuseredit');
-
-
-/*------------------------------------------
---------------------------------------------
-Add Announcement Routes List
---------------------------------------------
---------------------------------------------*/
-Route::get('/admin/addAnnouncement', [announcementController::class, 'create'])->name('manageannouncement.addAnnouncement');
-Route::post('create', [announcementController::class, 'create'])->name('create');
-
-/*------------------------------------------
---------------------------------------------
-Announcement List Routes List
---------------------------------------------
---------------------------------------------*/
-Route::view('manageannouncement.showAnnouncement' , 'showAnnouncement');
-Route::get('/admin/showAnnouncement', [announcementController::class, 'show'])->name('manageannouncement.showAnnouncement');
-
-
- /*------------------------------------------
---------------------------------------------
-Edit Announceemnt List Routes List
---------------------------------------------
---------------------------------------------*/
-
-Route::view('manageannouncement.updateAnnouncement' , 'updateAnnouncement');
-Route::get('/admin/edit/{id}', [announcementController::class, 'edit'])->name('manageannouncement.updateAnnouncement');
-Route::get('/admin/update/{id}', [announcementController::class, 'edit'])->name('manageannouncement.updateAnnouncement');
-Route::patch('/admin/update/{id}', [announcementController::class, 'update'])->name('manageannouncement.updateAnnouncement');
-
 
 
 });
@@ -156,52 +183,7 @@ Route::middleware(['auth', 'user-access:Petakom Committee'])->group(function () 
     
     Route::get('manager/home', [HomeController::class, 'managerHome'])->name('manager.home');
   
-    // /*------------------------------------------
-    // --------------------------------------------
-    // Add Users Routes List
-    // --------------------------------------------
-    // --------------------------------------------*/
-    // Route::get('manager/create', [UserController::class, 'create'])->name('manageusers.create');
-    // Route::post('manager/create', [UserController::class, 'store'])->name('manageusers.store');
-  
-    // /*------------------------------------------
-    // --------------------------------------------
-    // Users List Routes List
-    // --------------------------------------------
-    // --------------------------------------------*/
-    // Route::get('/manager/userlist', [UserController::class, 'show'])->name('manageusers.userlists');
-  
-    // /*------------------------------------------
-    // --------------------------------------------
-    // Edit Users List Routes List
-    // --------------------------------------------
-    // --------------------------------------------*/
-    // Route::get('/manager/edit/{id}', [UserController::class, 'edit'])->name('manageusers.edit');
-    // Route::patch('/manager/update/{id}', [UserController::class, 'update'])->name('manageusers.update');
-  
-  
-    // /*------------------------------------------
-    // --------------------------------------------
-    // Add Announcement Routes List
-    // --------------------------------------------
-    // --------------------------------------------*/
-    // Route::get('/manager/addAnnouncement', [AnnouncementController::class, 'create'])->name('manageannouncement.create');
-    // Route::post('/manager/addAnnouncement', [AnnouncementController::class, 'store'])->name('manageannouncement.store');
-  
-    // /*------------------------------------------
-    // --------------------------------------------
-    // Announcement List Routes List
-    // --------------------------------------------
-    // --------------------------------------------*/
-    // Route::get('/manager/showAnnouncement', [AnnouncementController::class, 'show'])->name('manageannouncement.show');
-  
-    // /*------------------------------------------
-    // --------------------------------------------
-    // Edit Announcement List Routes List
-    // --------------------------------------------
-    // --------------------------------------------*/
-    // Route::get('/manager/editAnnouncement/{id}', [AnnouncementController::class, 'edit'])->name('manageannouncement.edit');
-    // Route::patch('/manager/updateAnnouncement/{id}', [AnnouncementController::class, 'update'])->name('manageannouncement.update');
+    
 });
 
 

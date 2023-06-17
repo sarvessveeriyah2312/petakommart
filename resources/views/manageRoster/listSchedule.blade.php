@@ -1,4 +1,4 @@
-<?php $page="showAnnouncement";?>
+<?php $page="listSchedule";?>
 @extends('layouts.adminmainlayout')
 @section('content')
 <head>
@@ -9,8 +9,8 @@
 <div class="page-wrapper">
     <div class="content">
         @component('components.pageheader')                
-			@slot('title')Announcement List @endslot
-			@slot('title_1') Manage your Announcement @endslot
+			@slot('title')Schedule List @endslot
+			@slot('title_1') Manage your Schedule @endslot
 		@endcomponent
         @if (Session::has('success'))
         @endif
@@ -52,14 +52,10 @@
                                     <input type="text" placeholder="Enter User Name">
                                 </div>
                             </div>
+                          
                             <div class="col-lg-2 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <input type="text" placeholder="Enter Phone">
-                                </div>
-                            </div>
-                            <div class="col-lg-2 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <input type="text" placeholder="Enter Email">
+                                    <input type="text" placeholder="Enter Time">
                                 </div>
                             </div>
                             <div class="col-lg-2 col-sm-6 col-12">
@@ -67,14 +63,7 @@
                                     <input type="text" class="datetimepicker cal-icon" placeholder="Choose Date">
                                 </div>
                             </div>
-                            <div class="col-lg-2 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <select class="select">
-                                        <option>Disable</option>
-                                        <option>Enable</option>
-                                    </select>
-                                </div>
-                            </div>
+                         
                             <div class="col-lg-1 col-sm-6 col-12 ms-auto">
                                 <div class="form-group">
                                     <a class="btn btn-filters ms-auto"><img src="{{ URL::asset('/assets/img/icons/search-whites.svg')}}" alt="img"></a>
@@ -94,15 +83,17 @@
                                         <span class="checkmarks"></span>
                                     </label>
                                 </th>
-                                <th>Title</th>
-                                <th>Content</th>
+                                <th>Cashier ID</th>
+                                <th>Cashier Name</th>
+                                <th>Date</th>
+                                <th>Time</th>
                                 <th>Created On</th>
                                 <th>Updated On</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $announce )
+                            @foreach ($data as $tblroster )
                             <tr>
                                 <td>
                                     <label class="checkboxs">
@@ -110,15 +101,17 @@
                                         <span class="checkmarks"></span>
                                     </label>
                                 </td>
-                                <td>{{ $announce['Title'] }}</td>
-                                <td>{{ $announce['Content'] }}</td>
-                                <td>{{ $announce['created_at'] }}</td>
-                                <td>{{ $announce['updated_at'] }}</td>
+                                <td>{{ $tblroster['student_id'] }}</td>
+                                <td>{{ $tblroster['name'] }}</td>
+                                <td>{{ $tblroster['date'] }}</td>
+                                <td>{{ $tblroster['time'] }}</td>
+                                <td>{{ $tblroster['created_at'] }}</td>
+                                <td>{{ $tblroster['updated_at'] }}</td>
                                 <td>
-                                    <form id="delete" method="post" action="{{ route('announcements.destroy', $announce['id']) }}">
+                                    <form id="delete" method="post" action="{{ route('rosters.destroy', $tblroster['id']) }}">
                                         @csrf
                                         @method('DELETE')
-                                    <a class="me-3" href="{{ route('announcements.edit', $announce['id']) }}">
+                                    <a class="me-3" href="{{ route('manageRoster.updateSchedule', ['id' => $tblroster['id']]) }}">
                                         <img src="{{ URL::asset('/assets/img/icons/edit.svg')}}" alt="img">
                                     </a>
                                         <button type="submit" style="border: none" class="me-3 confirm-text">

@@ -13,6 +13,7 @@ class announcementModel extends Model
     protected $fillable = [
         'Title',
         'Content',
+        
      
     ];
 }

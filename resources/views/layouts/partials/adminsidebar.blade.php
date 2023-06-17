@@ -18,16 +18,9 @@
                         <li class="submenu">
                             <a href="javascript:void(0);"><img src="{{ URL::asset('/assets/img/icons/product.svg')}}" alt="img"><span> Product</span> <span class="menu-arrow"></span></a>
                             <ul>
-                                <li><a href="productlist">Product List</a></li>
-                                <li><a href="addproduct">Add Product</a></li>
-                                <li><a href="categorylist">Category List</a></li>
-                                <li><a href="addcategory">Add Category</a></li>
-                                <li><a href="subcategorylist">Sub Category List</a></li>
-                                <li><a href="subaddcategory">Add Sub Category</a></li>
-                                <li><a href="brandlist">Brand List</a></li>
-                                <li><a href="addbrand">Add Brand</a></li>
-                                <li><a href="importproduct">Import Products</a></li>
-                                <li><a href="barcode">Print Barcode</a></li>
+                                <li><a href="inventorylist">Inventory List</a></li>
+                                <li><a href="addinventory">Inventory Product</a></li>
+                               
                             </ul>
                         </li>                                    
                         <li class="submenu">
@@ -299,16 +292,9 @@
                         <li class="submenu">
                             <a href="javascript:void(0);"><span> Product</span> <span class="menu-arrow"></span></a>
                             <ul>
-                                <li><a href="productlist">Product List</a></li>
-                                <li><a href="addproduct">Add Product</a></li>
-                                <li><a href="categorylist">Category List</a></li>
-                                <li><a href="addcategory">Add Category</a></li>
-                                <li><a href="subcategorylist">Sub Category List</a></li>
-                                <li><a href="subaddcategory">Add Sub Category</a></li>
-                                <li><a href="brandlist">Brand List</a></li>
-                                <li><a href="addbrand">Add Brand</a></li>
-                                <li><a href="importproduct">Import Products</a></li>
-                                <li><a href="barcode">Print Barcode</a></li>
+                                <li><a href="inventorylist">Inventory List</a></li>
+                                <li><a href="addinventory">Add Inventory</a></li>
+                                
                             </ul>
                         </li>                                    
                         <li class="submenu">
@@ -511,11 +497,23 @@
                             <a class="{{ Request::is('create','userlists','newuseredit') ? 'active subdrop' : '' }}" href="javascript:void(0);"><i data-feather="users"></i><span>Users</span><span class="menu-arrow"></span></a>
                             <ul>
                                 <li><a class="{{ Request::is('create','newuseredit') ? 'active' : '' }}" href="{{ route('manageusers.create')}}">New User </a></li>
-                                <li><a class="{{ Request::is('show' , 'userslists') ? 'active' : '' }}" href="{{ route('manageusers.userlists')}}">Users List</a></li>
+                                <li><a class="{{ Request::is('show' , 'userlists') ? 'active' : '' }}" href="{{ route('manageusers.userlists')}}">Users List</a></li>
                             </ul>
                         </li>
                     </ul>
                 </li>
+                <li class="submenu-open">
+                    <h6 class="submenu-hdr">Roster Management</h6>		
+                    <ul>
+                        <li class="submenu">
+                            <a class="{{ Request::is('addSchedule','listSchedule','updateSchedule') ? 'active subdrop' : '' }}" href="javascript:void(0);"><i data-feather="calendar"></i></i><span>Schedule</span><span class="menu-arrow"></span></a>
+                            <ul>
+                                <li><a class="{{ Request::is('addSchedule','updateSchedule') ? 'active' : '' }}" href="{{ route('manageRoster.addSchedule')}}">New Schedule </a></li>
+                                <li><a class="{{ Request::is('show' , 'listSchedule') ? 'active' : '' }}" href="{{ route('manageRoster.listSchedule')}}">Schedule List</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>	
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">Announcement Management</h6>		
                     <ul>
@@ -531,14 +529,9 @@
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">Products</h6>
                     <ul>
-                        <li class="{{ Request::is('productlist','editproduct') ? 'active' : '' }}"><a href="{{url('productlist')}}"><i data-feather="box"></i><span>Products</span></a></li>
-                        <li class="{{ Request::is('addproduct','product-details') ? 'active' : '' }}"><a href="{{url('addproduct')}}"><i data-feather="plus-square"></i><span>Create Product</span></a></li>
-                        <li class="{{ Request::is('categorylist','addcategory','editcategory') ? 'active' : '' }}"><a href="{{url('categorylist')}}"><i data-feather="codepen"></i><span>Category</span></a></li>
-                        <li class="{{ Request::is('brandlist','addbrand','editbrand') ? 'active' : '' }}"><a href="{{url('brandlist')}}"><i data-feather="tag"></i><span>Brands</span></a></li>
-                        <li class="{{ Request::is('subcategorylist','editsubcategory','subaddcategory') ? 'active' : '' }}"><a href="{{url('subcategorylist')}}"><i data-feather="speaker"></i><span>Sub Category</span></a></li>									
-                        <li class="{{ Request::is('barcode') ? 'active' : '' }}"><a href="{{url('barcode')}}"><i data-feather="align-justify"></i><span>Print Barcode</span></a></li>
-                        <li class="{{ Request::is('importproduct') ? 'active' : '' }}"><a href="{{url('importproduct')}}"><i data-feather="minimize-2"></i><span>Import Products</span></a></li>
-                    </ul>
+                        <li><a class="{{ Request::is('addinventory','updateinventory') ? 'active' : '' }}" href="{{ route('manageinventory.addinventory')}}"><i data-feather="plus-square"></i>Add Inventory </a></li>
+                        <li><a class="{{ Request::is('show' , 'inventorylist') ? 'active' : '' }}" href="{{ route('manageinventory.inventorylist')}}"><i data-feather="box"></i>Inventory List</a></li>
+                     </ul>
                 </li>
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">Sales</h6>
