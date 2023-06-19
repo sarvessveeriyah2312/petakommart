@@ -1,20 +1,26 @@
 <?php $page="listSchedule";?>
+
 @extends('layouts.adminmainlayout')
+
 @section('content')
 <head>
+    <!-- Toastr CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
 </head>
 <body>
 <div class="page-wrapper">
     <div class="content">
+        <!-- Page header component -->
         @component('components.pageheader')                
 			@slot('title')Schedule List @endslot
 			@slot('title_1') Manage your Schedule @endslot
 		@endcomponent
+        
+        <!-- Display success message if it exists in the session -->
         @if (Session::has('success'))
         @endif
-        <!-- /schedule list -->
+        
+        <!-- Schedule list -->
         <div class="card">
             <div class="card-body">
                 <div class="table-top">
@@ -33,7 +39,8 @@
                     
                     </div>
                 </div>
-                <!-- /Filter -->
+                
+                <!-- Filter -->
                 <div class="card" id="filter_inputs">
                     <div class="card-body pb-0">
                         <div class="row">
@@ -42,7 +49,6 @@
                                     <input type="text" placeholder="Enter User Name">
                                 </div>
                             </div>
-                          
                             <div class="col-lg-2 col-sm-6 col-12">
                                 <div class="form-group">
                                     <input type="text" placeholder="Enter Time">
@@ -53,7 +59,6 @@
                                     <input type="text" class="datetimepicker cal-icon" placeholder="Choose Date">
                                 </div>
                             </div>
-                         
                             <div class="col-lg-1 col-sm-6 col-12 ms-auto">
                                 <div class="form-group">
                                     <a class="btn btn-filters ms-auto"><img src="{{ URL::asset('/assets/img/icons/search-whites.svg')}}" alt="img"></a>
@@ -63,6 +68,7 @@
                     </div>
                 </div>
                 <!-- /Filter -->
+                
                 <div class="table-responsive">
                     <table class="table  datanew">
                         <thead>
@@ -83,6 +89,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <!-- Loop through the data and display the roster information -->
                             @foreach ($data as $tblroster )
                             <tr>
                                 <td>
@@ -101,11 +108,13 @@
                                     <form id="delete" method="post" action="{{ route('rosters.destroy', $tblroster['id']) }}">
                                         @csrf
                                         @method('DELETE')
-                                        <!-- update schedule button -->
-                                    <a class="me-3" href="{{ route('manageRoster.updateSchedule', ['id' => $tblroster['id']]) }}">
-                                        <img src="{{ URL::asset('/assets/img/icons/edit.svg')}}" alt="img">
-                                    </a>
-                                    <!-- Delete roster/schedule button -->
+                                        
+                                        <!-- Update schedule button -->
+                                        <a class="me-3" href="{{ route('manageRoster.updateSchedule', ['id' => $tblroster['id']]) }}">
+                                            <img src="{{ URL::asset('/assets/img/icons/edit.svg')}}" alt="img">
+                                        </a>
+                                        
+                                        <!-- Delete roster/schedule button -->
                                         <button type="submit" style="border: none" class="me-3 confirm-text">
                                             <img src="{{ URL::asset('/assets/img/icons/delete.svg')}}" alt="img">
                                         </button>
@@ -126,9 +135,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @if (Session::has('success'))
 <script>
+    // Display success message using Toastr
     toastr.success("{{ Session::get('success') }}");
 </script>
 @endif
+
+<!-- Modal popup component -->
 @component('components.modal-popup')                
 @endcomponent
+
 @endsection

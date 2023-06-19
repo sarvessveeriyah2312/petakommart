@@ -14,7 +14,7 @@
 		@endcomponent
         @if (Session::has('success'))
         @endif
-        <!-- /product list -->
+        <!-- /user list -->
         <div class="card">
             <div class="card-body">
                 <div class="table-top">
@@ -139,7 +139,7 @@
                 </div>
             </div>
         </div>
-        <!-- /product list -->
+        <!-- /user list -->
     </div>
 </div>
 </body>

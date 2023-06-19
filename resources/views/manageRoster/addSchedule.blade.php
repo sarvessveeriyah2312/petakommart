@@ -22,65 +22,75 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-12">
-                        <div class="form-group">
-                            <label>{{ __('Cashier ID') }}</label>
-                            <!-- <input id="student_id" type="text" class="form-control @error('student_id') is-invalid @enderror" name="student_id" value="{{ old('student_id') }}" required autocomplete="student_id" autofocus> -->
-                            <select id="student_id" class="form-control @error('student_id') is-invalid @enderror" name="student_id" required>
-                                <option value="">Select Student</option>
-                                @foreach($users as $user)
-                                <option value="{{ $user->student_id }}">{{ $user->name }} ({{ $user->student_id }})</option>
-                            @endforeach
-                            </select>
-                            @error('student_id')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                    </div>
-                    <!-- <div class="col-12">
-                        <div class="form-group">
-                            <label>{{ __('Cashier Name') }}</label>
-                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                            @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                    </div> -->
+    <div class="form-group">
+        <!-- Label for the select dropdown -->
+        <label>{{ __('Cashier ID') }}</label>
+        
+        <!-- Select dropdown element -->
+        <select id="student_id" class="form-control @error('student_id') is-invalid @enderror" name="student_id" required>
+            <!-- Default option -->
+            <option value="">Select Student</option>
+            
+            <!-- Loop through users and generate options -->
+            @foreach($users as $user)
+                <option value="{{ $user->student_id }}">{{ $user->name }} ({{ $user->student_id }})</option>
+            @endforeach
+        </select>
+        
+        <!-- Error handling for student_id field -->
+        @error('student_id')
+            <!-- Display error message -->
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+</div>
+<div class="col-12">
+    <div class="form-group">
+        <!-- Label for the date input field -->
+        <label>{{ __('Date') }}</label>
+        
+        <!-- Date input field -->
+        <input id="date" type="date" class="form-control @error('date') is-invalid @enderror" name="date" value="{{ old('date') }}" required autocomplete="date" autofocus>
+        
+        <!-- Error handling for date field -->
+        @error('date')
+            <!-- Display error message -->
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+</div>
+
                     <div class="col-12">
-                        <div class="form-group">
-                            <label>{{ __('Date') }}</label>
-                            <input id="date" type="date" class="form-control @error('date') is-invalid @enderror" name="date" value="{{ old('date') }}" required autocomplete="date" autofocus>
-                            @error('date')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label>{{ __('Time Slot') }}</label>
-                            <select id="time" class="form-control @error('time') is-invalid @enderror" name="time" required>
-                                    <option value="">Select Time Slot</option>
-                                    <option value="8:00AM - 10:00AM">8:00AM - 10:00AM</option>
-                                    <option value="10:00AM - 12:00PM">10:00AM - 12:00PM</option>
-                                    <option value="12:00PM - 2:00PM">12:00PM - 2:00PM</option>
-                                    <option value="2:00PM - 4:00PM">2:00PM - 4:00PM</option>
-                                    <option value="4:00PM - 6:00PM">4:00PM - 6:00PM</option>
-                                   
-                                </select>
-                                @error('time')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                        </div>
-                    </div>
-                    
-                
+    <div class="form-group">
+        <!-- Label for the select dropdown -->
+        <label>{{ __('Time Slot') }}</label>
+        
+        <!-- Select dropdown element for selecting time slot -->
+        <select id="time" class="form-control @error('time') is-invalid @enderror" name="time" required>
+            <!-- Default option -->
+            <option value="">Select Time Slot</option>
+            
+            <!-- Available time slot options -->
+            <option value="8:00AM - 10:00AM">8:00AM - 10:00AM</option>
+            <option value="10:00AM - 12:00PM">10:00AM - 12:00PM</option>
+            <option value="12:00PM - 2:00PM">12:00PM - 2:00PM</option>
+            <option value="2:00PM - 4:00PM">2:00PM - 4:00PM</option>
+            <option value="4:00PM - 6:00PM">4:00PM - 6:00PM</option>
+        </select>
+        
+        <!-- Error handling for time field -->
+        @error('time')
+            <!-- Display error message -->
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+</div>
                     <div class="col-lg-12">
                     <input type="hidden" name="name" id="hidden_name"> <!-- Hidden input field for the name -->
                         <button type="submit" href="javascript:void(0);" class="btn btn-submit me-2"> {{ __('Submit') }}</button>

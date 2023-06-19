@@ -14,7 +14,7 @@
 		@endcomponent
         @if (Session::has('success'))
         @endif
-        <!-- /product list -->
+        <!-- /Announcement list -->
         <div class="card">
             <div class="card-body">
                 <div class="table-top">
@@ -112,21 +112,24 @@
                                     </label>
                                 </td>
                                 <td>{{ $announce['Title'] }}</td>
-                                <td>{{ substr($announce['Content'], 0, 50) }}</td>
+                                <td>{{ substr($announce['Content'], 0, 50) }}</td> {{-- Display the first 50 characters of the announcement content --}}                                
                                 <td>
                                     @if($announce['Image'])
                                     <img src="{{asset('uploads/'.$announce['Image']) }}" width="60">
+                                      {{-- Display the image if it exists --}}
                                     @endif
-                                    </td>
+                               </td>
                                 <td>{{ $announce['created_at'] }}</td>
                                 <td>{{ $announce['updated_at'] }}</td>
                                 <td>
                                     <form id="delete" method="post" action="{{ route('announcements.destroy', $announce['id']) }}">
                                         @csrf
                                         @method('DELETE')
+                                        {{-- Include CSRF token for form submission and specify the method as DELETE --}}
                                     <a class="me-3" href="{{ route('announcements.edit', $announce['id']) }}">
                                         <img src="{{ URL::asset('/assets/img/icons/edit.svg')}}" alt="img">
                                     </a>
+                                    {{-- Link to edit the announcement --}}
                                         <button type="submit" style="border: none" class="me-3 confirm-text">
                                             <img src="{{ URL::asset('/assets/img/icons/delete.svg')}}" alt="img">
                                         </button>
@@ -139,7 +142,7 @@
                 </div>
             </div>
         </div>
-        <!-- /product list -->
+        <!-- /Announcement list -->
     </div>
 </div>
 </body>

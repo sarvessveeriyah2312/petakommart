@@ -15,9 +15,12 @@
         @if (Session::has('success'))
        
         @endif
-        <!-- /add -->
+        <!-- /Add Announcement -->
         <form method="POST" action="{{  route('announcements.store')  }}" enctype="multipart/form-data">
             @csrf
+<!-- CSRF Protection: Generates a hidden input field with a token to protect against cross-site request forgery -->
+
+<!-- Rest of form fields and elements -->
         <div class="card">
             <div class="card-body">
                 <div class="row">
@@ -62,7 +65,7 @@
                 </div>
             </div>
         </div>
-        <!-- /add -->
+        <!-- /Add Announcement -->
     </div>
 </div>
 </body>
@@ -71,6 +74,9 @@
 @if (Session::has('success'))
 <script>
     toastr.success("{{ Session::get('success') }}", { timeOut: 9500 });
+    // Display a success toastr notification with the message retrieved from the session.
+    // The { timeOut: 9500 } option sets the duration (in milliseconds) for which the toastr notification will be displayed.
 </script>
+
 @endif
 @endsection

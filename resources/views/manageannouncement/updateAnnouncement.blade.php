@@ -7,9 +7,7 @@
 			@slot('title') Announcement Management @endslot
 			@slot('title_1') Edit/Update Announcement @endslot
 		@endcomponent
-        <!-- /add -->
-       
-
+        <!-- /update Announcement -->
         <form action="{{ route('announcements.update', $announcement->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -38,8 +36,6 @@
                             </div>
                         </div>
                     </div>
-                    
-                    
                     <div class="col-lg-12">
                         <button type="submit" class="btn btn-submit me-2">Submit</button>
                     </div>
@@ -47,7 +43,7 @@
             </div>
         </div>
 </form>
-        <!-- /add -->
+        <!-- /update Announcement -->
     </div>
 </div>
 @endsection

@@ -25,7 +25,10 @@
                     <div class="card-body">
                         <p class="card-text">
                             @if(strlen($announce['Content']) > 100)
-                                {{ substr($announce['Content'], 0, 100) . '...' }}
+                            {{ substr($announce['Content'], 0, 100) . '...' }}
+                            {{-- If the length of the announcement content is greater than 100 characters, display only the first 100 characters followed by ellipsis (...) --}}
+                        @endif
+                        
                                 <!-- Modal -->
                                 <div class="modal fade" id="exampleModalLong{{$announce['id']}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-scrollable" role="document">

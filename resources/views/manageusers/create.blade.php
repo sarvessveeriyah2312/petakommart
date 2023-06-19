@@ -15,8 +15,11 @@
         @if (Session::has('success'))
         @endif
         <!-- /add -->
-        <form method="POST" action="{{  route('users.store')  }}">
+        <form method="POST" action="{{ route('users.store') }}">
             @csrf
+            <!-- CSRF Protection: Generates a hidden input field with a token to protect against cross-site request forgery -->
+        
+            <!-- Rest of  form fields and elements -->
         <div class="card">
             <div class="card-body">
                 <div class="row">

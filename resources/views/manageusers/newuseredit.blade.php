@@ -8,11 +8,14 @@
 			@slot('title_1') Edit/Update User @endslot
 		@endcomponent
         <!-- /add -->
-       
-
         <form action="{{ route('users.update', $user->id) }}" method="POST">
             @csrf
             @method('PUT')
+            <!-- CSRF Protection: Generates a hidden input field with a token to protect against cross-site request forgery -->
+        
+            <!-- Method Override: Specifies the HTTP method to be used for the form submission -->
+        
+            <!-- Rest of form fields and elements -->
         <div class="card">
             <div class="card-body">
                 <div class="row">
