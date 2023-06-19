@@ -96,6 +96,7 @@
                                 </th>
                                 <th>Title</th>
                                 <th>Content</th>
+                                <th>Image</th>
                                 <th>Created On</th>
                                 <th>Updated On</th>
                                 <th>Action</th>
@@ -111,7 +112,12 @@
                                     </label>
                                 </td>
                                 <td>{{ $announce['Title'] }}</td>
-                                <td>{{ $announce['Content'] }}</td>
+                                <td>{{ substr($announce['Content'], 0, 50) }}</td>
+                                <td>
+                                    @if($announce['Image'])
+                                    <img src="{{asset('uploads/'.$announce['Image']) }}" width="60">
+                                    @endif
+                                    </td>
                                 <td>{{ $announce['created_at'] }}</td>
                                 <td>{{ $announce['updated_at'] }}</td>
                                 <td>

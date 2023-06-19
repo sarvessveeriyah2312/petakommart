@@ -70,15 +70,6 @@
                                 </div>
                             </div>
                             <div class="form-login">
-                                <div class="alreadyuser">
-                                    <h4>@if (Route::has('password.request'))
-                                        <a class="btn btn-link" href="{{ route('password.request') }}">
-                                            {{ __('Forgot Your Password?') }}
-                                        </a>
-                                    @endif</h4>
-                                </div>
-                            </div>
-                            <div class="form-login">
                                 <button type="submit" class="btn btn-login">{{ __('Login') }}</button>
                             </div>
                         </div>

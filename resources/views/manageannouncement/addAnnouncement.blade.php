@@ -16,11 +16,23 @@
        
         @endif
         <!-- /add -->
-        <form method="POST" action="{{  route('announcements.store')  }}">
+        <form method="POST" action="{{  route('announcements.store')  }}" enctype="multipart/form-data">
             @csrf
         <div class="card">
             <div class="card-body">
                 <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label>{{ __('Announcement Image') }}</label>
+                            <div class="image-upload">
+                                <input id="Image" name="Image" type="file">
+                                <div class="image-uploads">
+                                    <img src="{{ URL::asset('/assets/img/icons/upload.svg')}}" alt="img">
+                                    <h4>Drag and drop a file to upload</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-12">
                         <div class="form-group">
                             <label>{{ __('Announcement Title') }}</label>

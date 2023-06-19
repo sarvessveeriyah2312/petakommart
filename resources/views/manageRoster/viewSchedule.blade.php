@@ -1,5 +1,5 @@
-<?php $page="listSchedule";?>
-@extends('layouts.adminmainlayout')
+<?php $page="viewSchedule";?>
+@extends('layouts.cashiermainlayout')
 @section('content')
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -30,18 +30,14 @@
                         </div>
                     </div>
                     <div class="wordset">
-                    
+                   
                     </div>
                 </div>
                 <!-- /Filter -->
                 <div class="card" id="filter_inputs">
                     <div class="card-body pb-0">
                         <div class="row">
-                            <div class="col-lg-2 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <input type="text" placeholder="Enter User Name">
-                                </div>
-                            </div>
+                           
                           
                             <div class="col-lg-2 col-sm-6 col-12">
                                 <div class="form-group">
@@ -68,49 +64,26 @@
                         <thead>
                             <tr>
                                 <th>
-                                    <label class="checkboxs">
-                                        <input type="checkbox">
-                                        <span class="checkmarks"></span>
-                                    </label>
+                                    
                                 </th>
                                 <th>Cashier ID</th>
                                 <th>Cashier Name</th>
                                 <th>Date</th>
                                 <th>Time</th>
-                                <th>Created On</th>
-                                <th>Updated On</th>
-                                <th>Action</th>
+                               
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($data as $tblroster )
                             <tr>
                                 <td>
-                                    <label class="checkboxs">
-                                        <input type="checkbox">
-                                        <span class="checkmarks"></span>
-                                    </label>
+                                  
                                 </td>
                                 <td>{{ $tblroster['student_id'] }}</td>
                                 <td>{{ $tblroster['name'] }}</td>
                                 <td>{{ $tblroster['date'] }}</td>
                                 <td>{{ $tblroster['time'] }}</td>
-                                <td>{{ $tblroster['created_at'] }}</td>
-                                <td>{{ $tblroster['updated_at'] }}</td>
-                                <td>
-                                    <form id="delete" method="post" action="{{ route('rosters.destroy', $tblroster['id']) }}">
-                                        @csrf
-                                        @method('DELETE')
-                                        <!-- update schedule button -->
-                                    <a class="me-3" href="{{ route('manageRoster.updateSchedule', ['id' => $tblroster['id']]) }}">
-                                        <img src="{{ URL::asset('/assets/img/icons/edit.svg')}}" alt="img">
-                                    </a>
-                                    <!-- Delete roster/schedule button -->
-                                        <button type="submit" style="border: none" class="me-3 confirm-text">
-                                            <img src="{{ URL::asset('/assets/img/icons/delete.svg')}}" alt="img">
-                                        </button>
-                                    </form>                             
-                                </td>
+                            
                             </tr>
                             @endforeach
                         </tbody>

@@ -68,7 +68,14 @@ class inventoryController extends Controller
             'price' => 'required',
             'status' => 'required',
         ]);
-    
+		$imageName="";
+		if( $request->hasFile('image') ) {
+
+		$file = $request->file('image');
+		$imageName = time().'.'.$request->image->extension();     
+        $file->move(('uploads'), $imageName);
+		
+		}
         inventoryModel::create([
             'name' => $request->name,
             'category' => $request->category,
@@ -79,6 +86,7 @@ class inventoryController extends Controller
             'discount' => $request->discount,
             'price' => $request->price,
             'status' => $request->status,
+			'image'=>$imageName,
         ]);
     
         return redirect()->route('manageinventory.inventorylist')
@@ -138,6 +146,16 @@ public function updateInventory($id)
             
         ]);
 		$inventory = inventoryModel::find($id);
+		
+		$imageName=$inventory->image;
+		
+		if( $request->hasFile('image') ) {
+
+		$file = $request->file('image');
+		$imageName = time().'.'.$request->image->extension();     
+        $file->move(('uploads'), $imageName);
+		
+		}
 		$inventory->Update([
             'name' => $request->name,
             'category' => $request->category,
@@ -148,6 +166,7 @@ public function updateInventory($id)
             'discount' => $request->discount,
             'price' => $request->price,
             'status' => $request->status,
+			'image'=>$imageName,
             
         ]);
         //$inventoryModel->update($validatedData);
@@ -168,4 +187,11 @@ public function updateInventory($id)
         return redirect()->route('manageinventory.inventorylist')
             ->with('success', 'Inventory deleted successfully');
     }
+	public function inventorylist(inventoryModel $inventory): View
+    {
+        $data=inventoryModel::where('status','Open')->get();
+        return view('cashierinventory.inventorylist', compact('data'));
+    }
+
+	
 }

@@ -10,7 +10,7 @@
         @endcomponent
 
         <!-- /add -->
-        <form action="{{ route('inventorys.update', $inventory->id) }}" method="POST">
+        <form action="{{ route('inventorys.update', $inventory->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="card">
@@ -73,6 +73,17 @@
                                 </select>
                             </div>
                         </div>
+						<div class="col-lg-3 col-sm-6 col-12">
+						
+                            <div class="form-group">
+                                <label>Image</label>
+								@if($inventory['image'])
+								<img src="{{asset('uploads/'.$inventory['image']) }}" width="60">
+								@endif
+                                <input type="file" name="image">
+                            </div>
+                        </div>
+						
                         <div class="col-lg-12">
                             <button type="submit" class="btn btn-submit me-2">Update</button>
                             <a href="{{ url('inventorylist') }}" class="btn btn-cancel">Cancel</a>

@@ -10,7 +10,7 @@
         <!-- /add -->
        
 
-        <form action="{{ route('announcements.update', $announcement->id) }}" method="POST">
+        <form action="{{ route('announcements.update', $announcement->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
         <div class="card">
@@ -23,30 +23,25 @@
                         </div>
                         <div class="form-group">
                             <label>Content</label>
-                            <textarea type="text" name="Content"  >{{ $announcement['Content'] }}</textarea>
+                            <textarea type="text" name="Content">{{ $announcement['Content'] }}</textarea>
                         </div>
                     </div>
-                    {{-- <div class="col-lg-3 col-sm-6 col-12">
-                        <div class="form-group uploadedimage">
-                            <label>	Profile Picture</label>
-                            <div class="image-upload image-upload-new">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label>{{ __('Announcement Image') }}</label>
+                            <div class="image-upload">
+                                <input id="Image" name="Image" type="file">
                                 <div class="image-uploads">
-                                    <img src="{{ URL::asset('/assets/img/customer/customer1.jpg')}}" alt="img">
-                                    <div class="productviews">
-                                        <div class="productviewscontent">
-                                            <div class="productviewsname">
-                                                <h2>macbookpro.jpg</h2>
-                                                <h3>581kb</h3>
-                                            </div>
-                                            <a href="javascript:void(0);" class="hideset">x</a>
-                                        </div>
-                                    </div>
+                                    <img src="{{ URL::asset('/assets/img/icons/upload.svg')}}" alt="img">
+                                    <h4>Drag and drop a file to upload</h4>
                                 </div>
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
+                    
+                    
                     <div class="col-lg-12">
-                        <button  type="submit" href="javascript:void(0);" class="btn btn-submit me-2">Submit</button>
+                        <button type="submit" class="btn btn-submit me-2">Submit</button>
                     </div>
                 </div>
             </div>

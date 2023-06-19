@@ -1,4 +1,4 @@
-@extends('layouts.adminmainlayout')
+@extends('layouts.cashiermainlayout')
 
 @section('content')
 
@@ -27,7 +27,7 @@
                                 <th>Price</th>
                                 <th>Total Price</th>
                                 <th>Status</th>
-                                <th class="text-right">Actions</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -44,7 +44,7 @@
                             <tr>
                                 <td>{{ $inventory['id'] }}</td>
                                 <td>{{ $inventory['name'] }}</td>
-                                <td>
+								<td>
 								@if($inventory['image'])
 								<img src="{{asset('uploads/'.$inventory['image']) }}" width="60">
 								@endif
@@ -58,17 +58,7 @@
                                 <td>{{ $inventory['price'] }}</td>
                                 <td> {{ $totalPrice }}</td>
                                 <td>{{ $inventory['status'] }}</td>
-                                <td class="text-right">
-                                    <a href="{{ route('inventorys.edit', $inventory['id']) }}" class="btn btn-primary btn-sm">Edit</a>
-                                    <form action="{{ route('inventorys.destroy', $inventory['id']) }}" method="POST" style="display: inline">
-                                    @csrf
-                                    @method('DELETE')
-
-
-                                    
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this inventory item?')">Delete</button>
-                                    </form>
-                                </td>
+                                
                             </tr>
                       
                         

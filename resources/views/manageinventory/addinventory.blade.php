@@ -8,7 +8,7 @@
         @slot('title_1') Create new inventory @endslot
         @endcomponent
         <!-- /add -->
-        <form method="POST" action="{{ route('inventorys.store') }}">
+        <form method="POST" action="{{ route('inventorys.store') }}" enctype="multipart/form-data">
             @csrf <!-- Add this CSRF token field for security -->
             <div class="card">
                 <div class="card-body">
@@ -30,6 +30,7 @@
                                     <option>Snacks</option>
                                     <option>Fruits</option>
                                     <option>Drinks</option>
+                                    <option>Food</option>
                                 </select>
                             </div>
                         </div>
@@ -96,6 +97,7 @@
         <input type="text" name="price" class="form-control" value="{{ old('price') }}" required>
     </div>
 </div>
+
                         <div class="col-lg-3 col-sm-6 col-12">
                             <div class="form-group">
                                 <label>Status</label>
@@ -105,7 +107,12 @@
                                 </select>
                             </div>
                         </div>
-
+					<div class="col-lg-3 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label>Image</label>
+                                <input type="file" name="image">
+                            </div>
+                        </div>
                         <div class="col-lg-12">
                             <button type="submit" class="btn btn-submit me-2">Submit</button>
                             <a href="{{ url('inventorylist') }}" class="btn btn-cancel">Cancel</a>

@@ -25,7 +25,7 @@ class inventoryModel extends Model
         'discount',
         'price' ,
         'status' ,
-
+		'image',
      
     ];
 }

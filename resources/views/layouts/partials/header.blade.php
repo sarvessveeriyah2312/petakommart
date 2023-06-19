@@ -88,8 +88,6 @@
 						</div>
 					</div>
 					<hr class="m-0">
-					<a class="dropdown-item" href="{{url('generalsettings')}}"><i class="me-2" data-feather="settings"></i>Settings</a>
-					<hr class="m-0">
 					<a class="dropdown-item logout pb-0" href="{{ route('logout') }}"  onclick="event.preventDefault();
 					document.getElementById('logout-form').submit();"><img src="{{ URL::asset('/assets/img/icons/log-out.svg')}}" class="me-2" alt="img">{{ __('Logout') }}</a>
 					<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -106,7 +104,6 @@
 		<a href="javascript:void(0);" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
 		<div class="dropdown-menu dropdown-menu-right">
 			<a class="dropdown-item" href="{{url('profile')}}">My Profile</a>
-			<a class="dropdown-item" href="{{url('generalsettings')}}">Settings</a>
 			<a class="dropdown-item" href="{{ route('logout') }}"  onclick="event.preventDefault();
 			document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
 			<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

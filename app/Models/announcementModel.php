@@ -10,10 +10,14 @@ class announcementModel extends Model
     public $table = 'announcement';
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'Title',
         'Content',
-        
-     
+        'Image',
     ];
 }

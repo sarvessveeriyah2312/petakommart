@@ -1,7 +1,7 @@
 <?php
   
 namespace App\Http\Controllers;
-  
+use Illuminate\Support\Facades\Auth;
 use App\Models\rosterModel;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -20,7 +20,7 @@ class rosterController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * display add roster/schedule form
      */
     public function create(): View
     {
@@ -29,7 +29,7 @@ class rosterController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * function add/store roster/schedule data
      */
     public function store(Request $request): RedirectResponse
     {
@@ -59,7 +59,7 @@ class rosterController extends Controller
   
 
     /**
-     * Display the specified resource.
+     * Display tlist of roster/schedule sorted by date and time admin-petakom
      */
     public function show(rosterModel $tblroster): View
 {
@@ -77,10 +77,29 @@ class rosterController extends Controller
     return view('manageRoster.listSchedule', compact('data'));
 }
 
+// Display tlist of roster/schedule sorted by date and time for cashier
+public function view(rosterModel $tblroster): View
+{
+   
+    
+    $data = rosterModel::orderBy('date', 'desc')
+        ->orderByRaw("CASE
+            WHEN time = '8:00AM - 10:00AM' THEN 1
+            WHEN time = '10:00AM - 12:00PM' THEN 2
+            WHEN time = '12:00PM - 2:00PM' THEN 3
+            WHEN time = '2:00PM - 4:00PM' THEN 4
+            WHEN time = '4:00PM - 6:00PM' THEN 5
+            ELSE 6
+        END")
+        ->get();
+
+    return view('manageRoster.viewSchedule', compact('data'));
+}
+
 
 
     /**
-     * Show the form for editing the specified resource.
+     * display edit form for admin&petakomm
      */
     public function edit($id)
     {
@@ -90,7 +109,7 @@ class rosterController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * update roster/schedule information
      */
     public function update(Request $request, string $id)
 {
@@ -102,7 +121,7 @@ class rosterController extends Controller
 }
 
     /**
-     * Remove the specified resource from storage.
+     * delete the roster/schedule detail
      */
     public function destroy($id): RedirectResponse
     {

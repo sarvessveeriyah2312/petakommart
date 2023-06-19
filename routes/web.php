@@ -89,7 +89,6 @@ Route::patch('/update/{id}', [announcementController::class, 'update'])->name('m
 
 
 
-
 /*------------------------------------------
 --------------------------------------------
 Add Inventory Routes List
@@ -105,6 +104,8 @@ inventory List Routes List
 --------------------------------------------*/
 Route::view('manageinventory.inventorylist' , 'inventorylist');
 Route::get('/inventorylist', [inventoryController::class, 'show'])->name('manageinventory.inventorylist');
+
+Route::get('/inventory-list', [inventoryController::class, 'inventorylist'])->name('manageinventory.inventory-list');
 
 
  /*------------------------------------------
@@ -146,8 +147,12 @@ Route::view('manageRoster.updateSchedule' , 'updateSchedule');
 Route::get('/edit/{id}', [rosterController::class, 'edit'])->name('manageRoster.updateSchedule');
 Route::get('/update/{id}', [rosterController::class, 'edit'])->name('manageRoster.updateSchedule');
 Route::patch('/update/{id}', [rosterController::class, 'update'])->name('manageRoster.updateSchedule');
+Route::get('/viewSchedule',[rosterController::class, 'view'])->name('manageRoster.viewSchedule');
 
-Route::get('/announcementlist', [announcementController::class, 'view'])->name('announcementlist');
+Route::get('/announcementlist', [announcementController::class, 'view'])->name('manageannouncement.announcementlist');
+Route::get('/announcements/{id}', [announcementController::class, 'detail'])->name('announcements.detail');
+Route::get('/announcementsdetails/{id}', [announcementController::class, 'detail'])->name('announcements.detail');
+
 
   
 Auth::routes();

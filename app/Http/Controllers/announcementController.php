@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
 
 class announcementController extends Controller
 {
@@ -15,7 +16,7 @@ class announcementController extends Controller
      */
     public function index()
     {
-        //
+        // TODO: Implement the logic to retrieve and display announcements
     }
 
     /**
@@ -35,29 +36,51 @@ class announcementController extends Controller
             'Title' => 'required',
             'Content' => 'required',
         ]);
-        
-        announcementModel::create($request->all());
-         
+
+        $imageName = "";
+
+        if ($request->hasFile('Image')) {
+            $file = $request->file('Image');
+            $imageName = time() . '.' . $file->extension();
+            $file->move('uploads', $imageName);
+        }
+
+        announcementModel::create([
+            'Title' => $request->input('Title'),
+            'Content' => $request->input('Content'),
+            'Image' => $imageName,
+        ]);
+
         return redirect()->route('manageannouncement.showAnnouncement')
-                        ->with('success','Announcement Created Successfully.');
+            ->with('success', 'Announcement Created Successfully.');
     }
-  
 
     /**
      * Display the specified resource.
      */
     public function show(announcementModel $announcement): View
-{
-    $data=announcementModel::all();
-    return view('manageannouncement.showAnnouncement', compact('data'));
-}
+    {
+        $data = announcementModel::all();
+        return view('manageannouncement.showAnnouncement', compact('data'));
+    }
 
-public function view(announcementModel $announcement): View
-{
-    $data=announcementModel::all();
-    return view('announcementlist', compact('data'));
-}
+    /**
+     * Display the specified resource.
+     */
+    public function view(announcementModel $announcement): View
+    {
+        $data = announcementModel::all();
+        return view('manageannouncement.announcementlist', compact('data'));
+    }
 
+    /**
+     * Show the details of a specific announcement.
+     */
+    public function detail($id)
+    {
+        $data = announcementModel::findOrFail($id);
+        return view('manageannouncement.announcementdetail', compact('data'));
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -71,14 +94,38 @@ public function view(announcementModel $announcement): View
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-{
-    $announcement = announcementModel::findOrFail($id);
-    $data = $request->all();
-    $announcement->update($data);
+    public function update(Request $request, $id)
+    {
+        $announcement = announcementModel::findOrFail($id);
 
-    return redirect()->route('manageannouncement.showAnnouncement')->with('success', 'Announcement Updated Successfully');
-}
+        $request->validate([
+            'Title' => 'required',
+            'Content' => 'required',
+            'Image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validation for image file
+        ]);
+
+        if ($request->hasFile('Image')) {
+            $image = $request->file('Image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+
+            // Store the new image in the "uploads" directory
+            $image->storeAs('uploads', $imageName);
+
+            // Delete the previous image if it exists
+            if (!empty($announcement->Image)) {
+                Storage::delete('uploads/' . $announcement->Image);
+            }
+
+            $announcement->Image = $imageName;
+        }
+
+        $announcement->Title = $request->input('Title');
+        $announcement->Content = $request->input('Content');
+        $announcement->save();
+
+        return redirect()->route('manageannouncement.showAnnouncement')
+            ->with('success', 'Announcement Updated Successfully');
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -86,8 +133,8 @@ public function view(announcementModel $announcement): View
     public function destroy(announcementModel $announcement): RedirectResponse
     {
         $announcement->delete();
-         
+
         return redirect()->route('manageannouncement.showAnnouncement')
-                        ->with('success','Announcement Deleted Successfully');
+            ->with('success', 'Announcement Deleted Successfully');
     }
 }
